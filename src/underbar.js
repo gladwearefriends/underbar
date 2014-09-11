@@ -52,36 +52,33 @@ var _ = {};
     if (Array.isArray(collection)) {
       for (var i = 0; i < collection.length; i++) {
         iterator (collection[i], i, collection);
-      };
+      }
     } else {
       for (var key in collection) {
         iterator (collection[key], key, collection)
       }
     }
-
   };
 
   // Returns the index at which value can be found in the array, or -1 if value
   // is not present in the array.
-  _.indexOf = function(array, target){
+  _.indexOf = function(array, target) {
     // TIP: Here's an example of a function that needs to iterate, which we've
     // implemented for you. Instead of using a standard `for` loop, though,
     // it uses the iteration helper `each`, which you will need to write.
     var result = -1;
-
     _.each(array, function(item, index) {
       if (item === target && result === -1) {
         result = index;
       }
     });
-
     return result;
   };
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
     var result = [];
-    _.each(collection, function(item){
+    _.each(collection, function(item) {
       if (test(item)) {
         result.push(item);
       }
@@ -93,25 +90,21 @@ var _ = {};
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
-    
-    return _.filter(collection, function(item){
+    return _.filter(collection, function(item) {
       return !test(item);
     }); 
-
-
   };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
     var result = [];
-    _.each(array, function(item){
+    _.each(array, function(item) {
       if (_.indexOf(result, item) === -1) {
         result.push(item);
       }
-    })
+    });
     return result;
   };
-
 
   // Return the results of applying an iterator to each element.
   _.map = function(collection, iterator) {
@@ -119,9 +112,9 @@ var _ = {};
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
     var result = [];
-    _.each(collection, function(item){
+    _.each(collection, function(item) {
       result.push(iterator(item));
-    })
+    });
     return result;
   };
 
@@ -138,7 +131,7 @@ var _ = {};
     // TIP: map is really handy when you want to transform an array of
     // values into a new array of values. _.pluck() is solved for you
     // as an example of this.
-    return _.map(collection, function(item){
+    return _.map(collection, function(item) {
       return item[key];
     });
   };
@@ -146,12 +139,12 @@ var _ = {};
   // Calls the method named by functionOrKey on each value in the list.
   // Note: you will nead to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
-    if (typeof functionOrKey === 'function'){
-      return _.map(collection, function(item){
+    if (typeof functionOrKey === 'function') {
+      return _.map(collection, function(item) {
         return functionOrKey.apply(item);
       });
     } else {
-      return _.map(collection, function(item){
+      return _.map(collection, function(item) {
         return item[functionOrKey].apply(item);
       });
     }
